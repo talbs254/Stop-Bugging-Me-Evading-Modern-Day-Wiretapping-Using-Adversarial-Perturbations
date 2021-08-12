@@ -1,5 +1,5 @@
 <h1 align="center">
-  Stop Bugging Me!</br>Evading Modern-Day Wiretapping Using Adversarial Perturbations
+  Stop Bugging Me!</br>Evading Modern-Day Wiretapping</br>Using Adversarial Perturbations
 </h1>
 
 <h3 align="center">
