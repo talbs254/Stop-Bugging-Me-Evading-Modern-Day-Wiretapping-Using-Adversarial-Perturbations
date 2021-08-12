@@ -24,3 +24,16 @@
 <b>Please note that this repository is a work in progress! We will upload additional files in the near future. Thank you for your patience.</b>
 
 This repository contains the code for the manuscript [Stop Bugging Me! Evading Modern-Day Wiretapping Using Adversarial Perturbations](https://arxiv.org/abs/2010.12809). 
+
+## Citation
+```
+@article{senior2020stop,
+  title={Stop Bugging Me! Evading Modern-Day Wiretapping Using Adversarial Perturbations},
+  author={Senior, Tal Ben and Mathov, Yael and Shabtai, Asaf and Elovici, Yuval},
+  journal={arXiv preprint arXiv:2010.12809},
+  year={2020}
+}
+```
+
+## Acknowledgments
+The logo was created using [Kelly Sikkema's image from Unsplash](https://unsplash.com/photos/X-etICbUKec).
