@@ -1,0 +1,44 @@
+## Environment setup
+
+mkdir DeepSpeech
+cd DeepSpeech
+
+wget https://github.com/mozilla/DeepSpeech/archive/v0.4.1.tar.gz
+tar -xzf v0.4.1.tar.gz
+
+wget https://github.com/mozilla/DeepSpeech/releases/download/v0.4.1/deepspeech-0.4.1-models.tar.gz
+tar -xzf deepspeech-0.4.1-models.tar.gz
+
+cd ../
+mkdir toy_data
+cd toy_data
+wget https://github.com/mozilla/DeepSpeech/releases/download/v0.4.0/audio-0.4.0.tar.gz
+tar -xzf audio-0.4.0.tar.gz
+
+
+## Downgrade to python 3.6.0
+## For mac users: (~ref from https://github.com/pyenv/pyenv/issues/1740
+
+brew install pyenv-virtualenv
+
+## Add to ~/.bashrc:
+export PATH="$HOME/.pyenv/bin:$PATH"
+export PATH="/usr/local/bin:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+export LDFLAGS="-L/usr/local/opt/zlib/lib -L/usr/local/opt/bzip2/lib"
+export CPPFLAGS="-I/usr/local/opt/zlib/include -I/usr/local/opt/bzip2/include"
+
+source ./bashrc
+
+## Run within venv:
+CFLAGS="-I$(brew --prefix openssl)/include -I$(brew --prefix bzip2)/include -I$(brew --prefix readline)/include -I$(xcrun --show-sdk-path)/usr/include" LDFLAGS="-L$(brew --prefix openssl)/lib -L$(brew --prefix readline)/lib -L$(brew --prefix zlib)/lib -L$(brew --prefix bzip2)/lib" pyenv install --patch 3.6.0 < <(curl -sSL https://github.com/python/cpython/commit/8ea6353.patch\?full_index\=1)
+
+virtualenv venv --python=PATH_TO/.pyenv/versions/3.6.0/bin/python3.6
+
+## Install DeepSpeech requirements:
+pip install -r DeepSpeech/DeepSpeech-0.4.1/requirements.txt
+
+## Test environment
+deepspeech --model DeepSpeech/models/output_graph.pbmm --alphabet DeepSpeech/models/alphabet.txt --lm DeepSpeech/models/lm.binary --trie DeepSpeech/models/trie --audio toy_data/audio/2830-3980-0043.wav
